@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <router-view></router-view>
+  <div >
+    <h1>登陆成功</h1>
   </div>
 </template>
 
