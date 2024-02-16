@@ -5,7 +5,8 @@ export interface loginForm {
 }
 
 interface dataType {
-  token: string
+  token?: string
+  message?: string
 }
 
 //登陆接口返回类型
@@ -27,7 +28,7 @@ interface userInfo {
 }
 
 interface user {
-  checkUser: userInfo[]
+  checkUser: userInfo
 }
 
 //服务器返回用户信息相关的数据类型

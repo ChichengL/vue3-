@@ -1,9 +1,9 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 import { createRouter, createWebHistory } from 'vue-router'
-import { routes } from './routes'
+import { constantRoute } from './routes'
 export const router = createRouter({
   history: createWebHistory(),
-  routes,
+  routes:constantRoute,
   scrollBehavior() {
     return {
       left: 0,

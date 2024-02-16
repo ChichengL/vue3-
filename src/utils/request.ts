@@ -2,6 +2,7 @@
 //封装axios，请求和响应拦截器
 import axios from 'axios'
 import { ElMessage } from 'element-plus'
+import useuserStore from '@/store/modules/user'
 //创建axios实例
 const request = axios.create({
   baseURL: import.meta.env.VITE_APP_BASE_API, //基础路径上会携带的/api
@@ -10,6 +11,11 @@ const request = axios.create({
 
 //将request实例添加请求拦截器
 request.interceptors.request.use((config) => {
+  const userStore = useuserStore()
+  if (userStore.token) {
+    config.headers.token = userStore.token
+  }
+
   return config
 })
 //响应拦截器

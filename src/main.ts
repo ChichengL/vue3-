@@ -11,7 +11,9 @@ import '@/styles/index.scss'
 import globalComponent from '@/components'
 import 'virtual:svg-icons-register'
 import { router } from './router'
-import { store } from './store'
+import  store from './store'
+
+import './permission.ts'
 const app = createApp(App)
 app.use(ElementPlus, {
   locale: zhCn,

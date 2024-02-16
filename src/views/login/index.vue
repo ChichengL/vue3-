@@ -3,23 +3,31 @@
     <el-row>
       <el-col :span="12" :xs="0"></el-col>
       <el-col :span="12" :xs="24">
-        <el-form class="login_form" v-model="userForm">
+        <el-form
+          class="login_form"
+          :model="userForm"
+          :rules="rules"
+          ref="loginForm"
+        >
           <h1>欢迎</h1>
-          <el-item>
+          <!-- 用户名 -->
+          <el-form-item prop="username">
             <el-input
               :prefix-icon="User"
               v-model="userForm.username"
             ></el-input>
-          </el-item>
-          <el-item>
+          </el-form-item>
+
+          <!-- 密码 -->
+          <el-form-item prop="password">
             <el-input
               type="password"
               :prefix-icon="Lock"
               v-model="userForm.password"
               show-password
             ></el-input>
-          </el-item>
-          <el-item>
+          </el-form-item>
+          <el-form-item>
             <el-button
               type="primary"
               size="default"
@@ -29,7 +37,7 @@
             >
               登陆
             </el-button>
-          </el-item>
+          </el-form-item>
         </el-form>
       </el-col>
     </el-row>
@@ -39,31 +47,57 @@
 <script setup lang="ts">
 import { User, Lock } from '@element-plus/icons-vue'
 import { ref } from 'vue'
-import { useRouter } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 import useuserStore from '@/store/modules/user'
 import { ElNotification } from 'element-plus'
+import { getTime } from '@/utils/time.ts'
 const userForm = ref({ username: 'admin', password: '111111' })
 const userStore = useuserStore()
-const $router = useRouter()
+const route = useRoute()
+
+const router = useRouter()
 const loading = ref(false)
+const loginForm = ref(null)
+
 const login = async () => {
   loading.value = true
+  await loginForm.value.validate()
+  console.log(loginForm.value)
 
   try {
     await userStore.userLogin(userForm.value)
-    $router.push('/')
+    let redirect: any = route.query.redirect
+    router.push({ path: redirect || '/' })
     ElNotification({
       type: 'success',
-      message: '登陆成功',
+      message: `${getTime()}好`,
     })
     loading.value = false
-  } catch (error) {
+  } catch (error: any) {
     ElNotification({
       type: 'error',
       message: error.message,
     })
     loading.value = false
   }
+}
+const validatorUsername = (rule: any, value: any, callback: any) => {
+  if (value.length >= 5) {
+    callback()
+  } else {
+    callback(new Error('用户名长度至少为5'))
+  }
+}
+const validatorPassword = (rule: any, value: any, callback: any) => {
+  if (value.length >= 6) {
+    callback()
+  } else {
+    callback(new Error('密码长度至少为6'))
+  }
+}
+const rules = {
+  username: [{ trigger: 'change', validator: validatorUsername }],
+  password: [{ trigger: 'change', validator: validatorPassword }],
 }
 </script>
 
@@ -92,9 +126,6 @@ const login = async () => {
     }
     .login_button {
       width: 100%;
-    }
-    :deep('el-item') {
-      margin: 10px;
     }
   }
 }
