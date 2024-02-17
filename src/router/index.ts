@@ -3,7 +3,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import { constantRoute } from './routes'
 export const router = createRouter({
   history: createWebHistory(),
-  routes:constantRoute,
+  routes: constantRoute,
   scrollBehavior() {
     return {
       left: 0,

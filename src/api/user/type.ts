@@ -3,16 +3,22 @@ export interface loginForm {
   username: string
   password: string
 }
-
-interface dataType {
-  token?: string
-  message?: string
-}
-
-//登陆接口返回类型
-export interface loginResponseData {
+export interface responseData {
   code: number
-  data: dataType
+  ok: boolean
+  message: string
+}
+export interface loginResponseData extends responseData {
+  data: string
+}
+export interface userInfoResponseData extends responseData {
+  data: {
+    routes: string[]
+    buttons: string[]
+    roles: string[]
+    name: string
+    avatar: string
+  }
 }
 
 interface userInfo {

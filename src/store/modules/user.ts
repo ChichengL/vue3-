@@ -1,7 +1,11 @@
 //用户相关
 import { defineStore } from 'pinia'
-import type { loginForm, loginResponseData } from '@/api/user/type'
-import { requestLogin, requestUserInfo } from '@/api/user'
+import type {
+  loginForm,
+  loginResponseData,
+  userInfoResponseData,
+} from '@/api/user/type'
+import { requestLogin, requestUserInfo, requestLogout } from '@/api/user'
 import { UserState } from './type/types'
 import { get_token, set_token, remove_token } from '@/utils/token'
 //引入路由
@@ -20,28 +24,34 @@ const useuserStore = defineStore('User', {
       const response: loginResponseData = await requestLogin(data)
       //   console.log(response)
       if (response.code === 200) {
-        this.token = response.data.token as string
+        this.token = response.data as string
         set_token(this.token)
       } else {
-        return Promise.reject(new Error(response.data.message))
+        return Promise.reject(new Error(response.data))
       }
     },
     async userInfo() {
-      const res = await requestUserInfo()
+      const res: userInfoResponseData = await requestUserInfo()
       //   console.log(res)
       if (res.code === 200) {
-        this.username = res.data.checkUser.username
-        this.avatar = res.data.checkUser.avatar
+        this.username = res.data.name
+        this.avatar = res.data.avatar
         return 'ok'
       } else {
-        return Promise.reject('获取用户信息失败')
+        return Promise.reject(res.message)
       }
     },
-    userLogout() {
-      this.token = ''
-      this.avatar = ''
-      this.username = ''
-      remove_token()
+    async userLogout() {
+      const res: any = await requestLogout()
+      if (res.code === 200) {
+        this.token = ''
+        this.avatar = ''
+        this.username = ''
+        remove_token()
+        return 'ok'
+      } else {
+        return Promise.reject(new Error(res.message))
+      }
     },
   },
   getters: {},

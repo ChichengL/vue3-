@@ -9,7 +9,7 @@ nprogress.configure({ showSpinner: false })
 const userStore = useuserStore(store)
 
 router.beforeEach(async (to: any, from: any, next: any) => {
-  document.title = 'ChiChengL-' + to.meta.path
+  //   document.title = 'cc后台管理系统-' + to.meta.path
   nprogress.start()
   const token = userStore.token
   const username = userStore.username
@@ -24,7 +24,7 @@ router.beforeEach(async (to: any, from: any, next: any) => {
           await userStore.userInfo()
           next()
         } catch (error) {
-          userStore.userLogout()
+          await userStore.userLogout()
           next({ path: '/login', query: { redirect: to.path } })
         }
       }

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style="max-height: 760px">
     <router-view v-slot="{ Component }">
       <transition name="fade">
         <component :is="Component" v-if="flag" />
@@ -10,7 +10,7 @@
 
 <script setup lang="ts">
 import { nextTick, ref, watch } from 'vue'
-import  useLayoutStore  from '@/store/modules/layout'
+import useLayoutStore from '@/store/modules/layout'
 defineOptions({ name: 'Main' })
 const flag = ref(true)
 const layoutStore = useLayoutStore()

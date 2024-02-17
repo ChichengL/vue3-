@@ -19,7 +19,7 @@
 
 <script setup lang="ts">
 import { computed, toRefs } from 'vue'
-import  useLayoutStore  from '@/store/modules/layout.ts'
+import useLayoutStore from '@/store/modules/layout.ts'
 import { useRoute } from 'vue-router'
 
 const LayoutStore = useLayoutStore()

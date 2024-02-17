@@ -14,7 +14,7 @@ export const constantRoute = [
   },
   {
     //主页面
-    patg: '/',
+    path: '/',
     component: () => import('@/layout/index.vue'),
     name: 'layout',
     meta: {
