@@ -46,7 +46,8 @@ defineOptions({
 })
 const router = useRouter()
 const goRoute = (vc: any) => {
-  router.push(vc.index)
+  console.log(vc)
+  vc.index ? router.push(vc.index) : ''
 }
 </script>
 

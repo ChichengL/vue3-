@@ -2,8 +2,8 @@
 import SvgIcon from './SvgIcon/index.vue'
 import { App } from 'vue'
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'
-
-const allGlobalComponents: any = { SvgIcon }
+import Category from './Category/index.vue'
+const allGlobalComponents: any = { SvgIcon, Category }
 export default {
   install(app: App) {
     Object.keys(allGlobalComponents).forEach((item) => {

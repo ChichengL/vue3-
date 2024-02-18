@@ -61,7 +61,7 @@ const loginForm = ref(null)
 
 const login = async () => {
   loading.value = true
-  await loginForm.value.validate()
+  await (loginForm.value as unknown as HTMLFormElement).validate()
   console.log(loginForm.value)
 
   try {
@@ -81,14 +81,14 @@ const login = async () => {
     loading.value = false
   }
 }
-const validatorUsername = (rule: any, value: any, callback: any) => {
+const validatorUsername = (_rule: any, value: any, callback: any) => {
   if (value.length >= 5) {
     callback()
   } else {
     callback(new Error('用户名长度至少为5'))
   }
 }
-const validatorPassword = (rule: any, value: any, callback: any) => {
+const validatorPassword = (_rule: any, value: any, callback: any) => {
   if (value.length >= 6) {
     callback()
   } else {

@@ -38,9 +38,8 @@ router.beforeEach(async (to: any, from: any, next: any) => {
   }
 })
 
-router.afterEach((to: any, from: any, next: any) => {
+router.afterEach(() => {
   nprogress.done()
-  next()
 })
 
 //路由鉴权
