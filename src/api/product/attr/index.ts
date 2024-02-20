@@ -1,10 +1,12 @@
 import request from '@/utils/request'
-import { CategoryResponseData, AttrResponseData } from './type'
+import { CategoryResponseData, AttrResponseData, Attr } from './type'
 enum API {
   GETCATEGORY1_URL = '/admin/product/getCategory1',
   GETCATEGORY2_URL = '/admin/product/getCategory2/',
   GETCATEGORY3_URL = '/admin/product/getCategory3/',
   ATTRLIST_URL = '/admin/product/attrInfoList/',
+  ADDORUPDATEATTR_URL = '/admin/product/saveAttrInfo',
+  DELETEATTR_URL = '/admin/product/deleteAttr/',
 }
 
 export const requestC1 = () => {
@@ -29,3 +31,9 @@ export const requestAttr = ({
     API.ATTRLIST_URL + `${c1Id}/${c2Id}/${c3Id}`,
   )
 }
+export const requestDeleteAttr = (id: number) => {
+  return request.delete<any, any>(API.DELETEATTR_URL + id)
+}
+
+export const requestAddOrUpdateAttr = (data: Attr) =>
+  request.post<any, any>(API.ADDORUPDATEATTR_URL, data)

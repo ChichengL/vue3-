@@ -139,26 +139,6 @@ export const constantRoute = [
           icon: 'Sunset',
         },
       },
-      {
-        path: '/product/sku',
-        name: 'Sku',
-        component: () => import('@/views/product/sku/index.vue'),
-        meta: {
-          hidden: false,
-          title: 'SKU管理',
-          icon: 'Stamp',
-        },
-      },
-      {
-        path: '/product/spu',
-        name: 'Spu',
-        component: () => import('@/views/product/spu/index.vue'),
-        meta: {
-          hidden: false,
-          title: 'SPU管理',
-          icon: 'Flag',
-        },
-      },
     ],
   },
 ]
