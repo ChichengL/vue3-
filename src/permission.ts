@@ -8,7 +8,7 @@ import useuserStore from './store/modules/user'
 nprogress.configure({ showSpinner: false })
 const userStore = useuserStore(store)
 
-router.beforeEach(async (to: any, from: any, next: any) => {
+router.beforeEach(async (to: any, _from: any, next: any) => {
   //   document.title = 'cc后台管理系统-' + to.meta.path
   nprogress.start()
   const token = userStore.token

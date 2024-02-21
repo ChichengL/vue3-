@@ -10,11 +10,11 @@ export interface User {
   username: string
   password: string
   name: string
-  phone: string
-  roleName: string
+  phone?: string
+  roleName?: string
 }
 
-export interface UserResponseDate extends responseData {
+export interface UserResponseData extends responseData {
   data: {
     records: User[]
     total: number
@@ -22,4 +22,23 @@ export interface UserResponseDate extends responseData {
     current: number
     pages: number
   }
+}
+
+export interface RoleData {
+  id?: number
+  createTime?: string
+  updateTime?: string
+  roleName: string
+  remark: null
+}
+
+export interface RoleResponseData extends responseData {
+  data: {
+    assignRoles: RoleData[]
+    allRolesList: RoleData[]
+  }
+}
+export interface SetRoleData {
+  roleIdList: number[]
+  userId: number
 }
