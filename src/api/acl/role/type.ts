@@ -8,7 +8,7 @@ export interface RoleData {
   createTime?: string
   updateTime?: string
   roleName: string
-  remark: null
+  remark?: null
 }
 
 export interface RoleResponseData extends responseData {
@@ -25,4 +25,22 @@ export interface RoleResponseData extends responseData {
     searchCount: boolean
     pages: number
   }
+}
+
+export interface MenuData {
+  id: number
+  createTime: string
+  updateTime: string
+  pid: number
+  name: string
+  code: string
+  toCode: string
+  type: number
+  status: null
+  level: number
+  children?: MenuData[]
+  select: boolean
+}
+export interface MenuResponseData extends responseData {
+  data: MenuData[]
 }

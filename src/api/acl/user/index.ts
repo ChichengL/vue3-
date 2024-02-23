@@ -13,6 +13,7 @@ enum API {
   SETROLE_URL = '/admin/acl/user/doAssignRole',
   DELETEUSER_URL = '/admin/acl/user/remove/',
   DELETEUSERLIST_URL = '/admin/acl/user/batchRemove',
+  ALLPERMISSION_URL = '/admin/acl/permission/toAssign/',
 }
 export const requestUsers = (page: number, limit: number, username: string) => {
   return request.get<any, UserResponseData>(
