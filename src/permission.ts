@@ -22,7 +22,8 @@ router.beforeEach(async (to: any, _from: any, next: any) => {
       } else {
         try {
           await userStore.userInfo()
-          next()
+          //防止还没获取路由信息就进入异步组件
+          next({ ...to })
         } catch (error) {
           await userStore.userLogout()
           next({ path: '/login', query: { redirect: to.path } })

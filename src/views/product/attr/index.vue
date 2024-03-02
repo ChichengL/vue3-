@@ -8,6 +8,7 @@
           icon="Plus"
           :disabled="categoryStore.c3Id ? false : true"
           @click="addAttr"
+          v-has="'btn.Attr.add'"
         >
           添加属性
         </el-button>
@@ -41,6 +42,7 @@
                 type="primary"
                 icon="Edit"
                 @click="updateAttr(row)"
+                v-has="'btn.Attr.update'"
               ></el-button>
               <el-popconfirm title="确定删除吗?" @confirm="deleteAttr(row.id)">
                 <template #reference>

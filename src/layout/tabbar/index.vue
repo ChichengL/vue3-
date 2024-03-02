@@ -24,7 +24,6 @@ defineOptions({ name: 'Tabbar' })
   display: flex;
   justify-content: space-between;
   font-size: 22px;
-  background-image: linear-gradient(to right, white, rgb(194, 186, 186));
   .tabbar_left {
     display: flex;
     align-items: center;

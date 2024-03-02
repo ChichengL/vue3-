@@ -46,16 +46,6 @@ export const constantRoute = [
     },
   },
   {
-    path: '/:pathMatch(.*)*',
-    redirect: '/404',
-    name: 'Any',
-    meta: {
-      title: '任意路由',
-      hidden: true,
-      icon: 'WarningFilled',
-    },
-  },
-  {
     path: '/screen',
     name: 'screen',
     component: () => import('@/views/screen/index.vue'),
@@ -65,6 +55,10 @@ export const constantRoute = [
       icon: 'Monitor',
     },
   },
+]
+
+//异步路由
+export const asyncRoutes = [
   {
     path: '/acl',
     name: 'Acl',
@@ -142,3 +136,15 @@ export const constantRoute = [
     ],
   },
 ]
+
+//任意路由
+export const anyRoutes = {
+  path: '/:pathMatch(.*)*',
+  redirect: '/404',
+  name: 'Any',
+  meta: {
+    title: '任意路由',
+    hidden: true,
+    icon: 'WarningFilled',
+  },
+}

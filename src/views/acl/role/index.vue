@@ -47,7 +47,7 @@
           align="center"
         ></el-table-column>
         <el-table-column label="操作" width="360px">
-          <template #="{ row, $index }">
+          <template #default="{ row }">
             <el-button type="primary" icon="User" @click="setPermission(row)">
               分配权限
             </el-button>

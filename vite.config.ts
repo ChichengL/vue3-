@@ -1,6 +1,9 @@
 import { ConfigEnv, defineConfig, loadEnv } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import path from 'path'
+import AutoImport from 'unplugin-auto-import/vite'
+import Components from 'unplugin-vue-components/vite'
+import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 import { viteMockServe } from 'vite-plugin-mock'
 // https://vitejs.dev/config/
@@ -15,6 +18,12 @@ export default defineConfig(({ command, mode }: ConfigEnv) => {
       }),
       viteMockServe({
         enable: command === 'serve', //保证开发阶段可以使用mock接口
+      }),
+      AutoImport({
+        resolvers: [ElementPlusResolver()],
+      }),
+      Components({
+        resolvers: [ElementPlusResolver()],
       }),
     ],
     resolve: {
